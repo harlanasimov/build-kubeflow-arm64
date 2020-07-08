@@ -8,6 +8,7 @@ services:
 
 before_install:
   - git clone -b 'v1.0' --depth 1 https://github.com/kubeflow/kubeflow.git
+  - pip install pyyaml
   
 script:
   - cd kubeflow/components
