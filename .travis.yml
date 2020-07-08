@@ -10,8 +10,8 @@ before_install:
   - git clone -b 'v1.0' --depth 1 https://github.com/kubeflow/kubeflow.git
   
 script:
-  - cd kubeflow/components/notebook-controller
-  - docker build -t notebook-controller .
+  - cd kubeflow/components
+  - python build_image.py tf_notebook  
   
 after_script:
   - cd kubeflow
