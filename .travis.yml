@@ -1,5 +1,4 @@
 arch:
-  - amd64
   - arm64
 
 os: linux
@@ -11,8 +10,8 @@ before_install:
   - git clone -b 'v1.0' --depth 1 https://github.com/kubeflow/kubeflow.git
   
 script:
-  - cd kubeflow
-  - pwd
+  - cd kubeflow/components/notebook-controller
+  - docker build -t notebook-controller .
   
 after_script:
   - cd kubeflow
