@@ -8,10 +8,10 @@ services:
 
 before_install:
   - git clone -b 'v1.0' --depth 1 https://github.com/kubeflow/kubeflow.git
-  - pip install pyyaml
   
 script:
   - cd kubeflow/components
+  - pip install pyyaml
   - python build_image.py tf_notebook  
   
 after_script:
