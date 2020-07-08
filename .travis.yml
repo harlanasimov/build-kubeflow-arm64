@@ -12,7 +12,7 @@ before_install:
 script:
   - cd kubeflow/components
   - python --version
-  - pip install pyyaml
+  - pip install PyYAML
   - python build_image.py tf_notebook  
   
 after_script:
