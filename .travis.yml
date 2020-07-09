@@ -14,8 +14,9 @@ before_install:
 script:
   - cd kubeflow/components
 #  - python --version
-  - pip install PyYAML
-  - python build_image.py --tf_version=1.6.0 tf_serving
+#  - pip install PyYAML
+#  - python build_image.py --tf_version=1.6.0 tf_serving
+   - docker build -t notebook-controller -f notebook-controller/Dockerfile .
   
 after_script:
   - cd kubeflow
