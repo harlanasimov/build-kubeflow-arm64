@@ -9,6 +9,7 @@ services:
   - docker
 
 before_install:
+  - docker version
   - git clone -b 'v1.0' --depth 1 https://github.com/kubeflow/kubeflow.git
   
 script:
@@ -18,6 +19,10 @@ script:
 #  - python build_image.py --tf_version=1.6.0 tf_serving
   - docker build -t notebook-controller -f notebook-controller/Dockerfile .
   - docker build -t tensorboard-controller -f  tensorboard-controller/Dockerfile .
+  - docker build -t centraldashboard -f  centraldashboard/Dockerfile .
+  - docker build -t jupyter-web-app -f  jupyter-web-app/Dockerfile .
+  - docker build -t profile-controller -f  profile-controller/Dockerfile .
+  - docker build -t access-management -f  access-management/Dockerfile .
 
 after_script:
   - cd kubeflow
