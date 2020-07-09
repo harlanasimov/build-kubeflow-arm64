@@ -28,9 +28,21 @@ script:
   - cd profile-controller
   - docker build -t profile-controller . 
   - cd ..
-  - cd access-management 
-  - docker build -t access-management .
+#  - cd access-management 
+#  - docker build -t access-management .
+#  - cd ..
+  - cd admission-webhook
+  - docker build -t admission-webhook .
   - cd ..
+  - cd gatekeeper
+  - docker build -t gatekeeper .
+  - cd ..
+  - cd kflogin
+  - docker build -t kflogin .
+  - cd .. 
+  - cd static-config-server
+  - docker build -t static-config-server .
+  - cd .. 
 
 after_script:
   - cd kubeflow
