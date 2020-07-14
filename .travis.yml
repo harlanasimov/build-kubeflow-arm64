@@ -1,6 +1,7 @@
 env:
-  - REGISTRY=cestcai
-  - KUBEFLOW_TAG=v1.0
+  global:
+    - REGISTRY=cestcai
+    - KUBEFLOW_TAG=v1.0
   
 arch:
   - arm64
