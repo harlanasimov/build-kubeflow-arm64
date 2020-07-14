@@ -18,19 +18,24 @@ before_install:
   
 script:
   - cd kubeflow/components
-#  - python --version
-#  - pip install PyYAML
-#  - python build_image.py --tf_version=1.6.0 tf_serving
-  - docker build -t notebook-controller -f notebook-controller/Dockerfile .
-  - docker build -t tensorboard-controller -f  tensorboard-controller/Dockerfile .
-  - cd centraldashboard
-  - docker build -t centraldashboard . 
-  - cd ..
+  - docker build -t ${REGISTRY}/notebook-controller:${KUBEFLOW_TAG} -f notebook-controller/Dockerfile .
+  - docker push ${REGISTRY}/notebook-controller:${KUBEFLOW_TAG} 
+  
+  - docker build -t ${REGISTRY}/tensorboard-controller:${KUBEFLOW_TAG} -f  tensorboard-controller/Dockerfile .
+  - docker push ${REGISTRY}/tensorboard-controller:${KUBEFLOW_TAG}  
+  
+  #- cd centraldashboard
+  #- docker build -t centraldashboard . 
+  #- cd ..
+  
   - cd jupyter-web-app
-  - docker build -t jupyter-web-app . 
+  - docker build -t ${REGISTRY}/jupyter-web-app:${KUBEFLOW_TAG}  .
+  - docker push ${REGISTRY}/jupyter-web-app:${KUBEFLOW_TAG}
   - cd ..
+  
   - cd profile-controller
-  - docker build -t profile-controller . 
+  - docker build  -t ${REGISTRY}/profile-controller:${KUBEFLOW_TAG} .
+  - docker push ${REGISTRY}/profile-controller:${KUBEFLOW_TAG}
   - cd ..
 #  - cd access-management 
 #  - docker build -t access-management .
