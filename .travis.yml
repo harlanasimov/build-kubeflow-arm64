@@ -1,5 +1,7 @@
-#language: python
-
+env:
+  - REGISTRY=cestcai
+  - KUBEFLOW_TAG=v1.0
+  
 arch:
   - arm64
 
@@ -10,7 +12,8 @@ services:
 
 before_install:
   - docker version
-  - git clone -b 'v1.0' --depth 1 https://github.com/kubeflow/kubeflow.git
+  - docker login --username=${DOCKER_USER} --password=${DOCKER_PASS}
+  - git clone -b ${KUBEFLOW_TAG} --depth 1 https://github.com/kubeflow/kubeflow.git
   
 script:
   - cd kubeflow/components
@@ -32,8 +35,10 @@ script:
 #  - docker build -t access-management .
 #  - cd ..
   - cd admission-webhook
-  - docker build -t admission-webhook .
+  - docker build -t ${REGISTRY}/admission-webhook:${KUBEFLOW_TAG} .
+  - docker push ${REGISTRY}/admission-webhook:${KUBEFLOW_TAG} 
   - cd ..
+  
   - cd gatekeeper
   - docker build -t gatekeeper .
   - cd ..
